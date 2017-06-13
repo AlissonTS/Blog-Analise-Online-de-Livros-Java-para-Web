@@ -1,0 +1,69 @@
+CREATE TABLE Usuario(
+usuario varchar(30) not null,
+senha varchar(30) not null,
+emailUsuario varchar(50) not null,
+informacaoImp varchar(80),
+idade int,
+dataCriacao varchar(30) not null,
+horarioCriacao varchar(30)not null,
+dataModific varchar(30) not null,
+horarioModific varchar(30)not null,
+estadoConta int not null,
+nacionalidade varchar(30),
+ocupacao varchar(50),
+PRIMARY KEY(usuario));
+
+CREATE TABLE Post(
+usuario varchar(30) not null,
+titulo varchar(40) not null,
+subtitulo varchar(40),
+autorlivro varchar(50) not null,
+anolivro int,
+categoria varchar(30) not null,
+assunto varchar(40) not null,
+paginas int,
+idioma varchar(30) not null,
+analise varchar(600) not null,
+data varchar(30) not null,
+horario varchar(30)not null,
+ano int not null,
+mes int not null,
+dia int not null,
+hora int not null,
+minuto int not null,
+segundo int not null,
+dataModific varchar(30) not null,
+horarioModific varchar(30)not null,
+PRIMARY KEY(data, horario, usuario),
+FOREIGN KEY(usuario) REFERENCES Usuario(usuario));
+
+CREATE TABLE Acessos(
+cod int,
+acessosTotal int,
+PRIMARY KEY(cod));
+
+CREATE TABLE Seguir(
+usuarioL varchar(30) not null,
+usuarioS varchar(30) not null,
+PRIMARY KEY(usuarioL, usuarioS),
+FOREIGN KEY(usuarioL) REFERENCES Usuario(usuario),
+FOREIGN KEY(usuarioS) REFERENCES Usuario(usuario));
+
+CREATE TABLE Comentario(
+usuario varchar(30) not null,
+usuarioC varchar(30) not null,
+data varchar(30) not null,
+horario varchar(30)not null,
+dataC varchar(30) not null,
+horarioC varchar(30)not null,
+ano int not null,
+mes int not null,
+dia int not null,
+hora int not null,
+minuto int not null,
+segundo int not null,
+comentario varchar(80) not null,
+PRIMARY KEY(usuarioC, dataC, horarioC));
+
+insert into Acessos(acessosTotal, cod) values(0, 1);
+update Acessos set acessosTotal=acessosTotal+1 where cod=1; 
